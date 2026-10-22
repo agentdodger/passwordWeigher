@@ -1,13 +1,30 @@
 import json
 
+# +2 score for each character in the password, the rest removes score
+# +4 for any symbol
+# Requirement of atleast 4 characters minimum for password 
+
+# <---------- Variables ---------->
+debug = True # for detailed process outputs
+score = 0 # baseline score before input
+processingScore = 0 # temporary storage for processing weight for letter from weights.json
+reasons = str[]
+
+w = json.load(open("weights.json")) # assignment of 'w' to management of weights
+if debug == True:
+    print(w) # output of current weights if debug on
+
 password = str(input("Enter your password:"))
-score = 0
+
+if debug == True:
+    print(f"Password Input: {password}, score = {score}")
 
 def checkScore(finalScore): # Final score output
-    if finalScore >= 0: # if below 0, failed
-        print("") 
-    elif finalScore <= 1 and finalScore >5: # if between 1 and 5, poor password
-        print("")
-    elif finalScore <=5 and finalScore >
-
-def reasoning(upperS, lowerS, allUpperS, allLowerS, allNumbersS, allLettersS, consNumbersS, consLettersS, )
+    if finalScore < 0:
+        print("Failed")
+    elif finalScore <= 5:
+        print("Poor")
+    elif finalScore <= 10:
+        print("Good")
+    else:
+        print("Great")

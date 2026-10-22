@@ -1,5 +1,6 @@
 {
-    "characterBaseline": 1, ## +1 score for each character in 
+    "characterBaseline": 2,
+    "symbolBaseline": 4,
     "allUpper": -1,
     "allLower": -1,
     "allNumbers": -1,
