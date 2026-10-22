@@ -1,0 +1,12 @@
+{
+    "characterBaseline": 1, ## +1 score for each character in 
+    "allUpper": -1,
+    "allLower": -1,
+    "allNumbers": -1,
+    "allLetters": -1,
+    "consecutiveNumbers": -2,
+    "consecutiveLetters": -3,
+    "sequencedNumbers": -4,
+    "sequencedLetters": -6,
+    "commonPassword": -10
+}
