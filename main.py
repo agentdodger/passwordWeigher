@@ -29,7 +29,6 @@ for i in password:
     else:
         processingScore = w['symbolBaseline'] # if not number or character, must be a symbol: +4
     score = score+processingScore
-    processingScore = -1 # reset to -1 for error detection, next run should replace processingScore immediately if handled appropriately
 
     if debug == True:
         if processingScore == 2:
@@ -40,19 +39,21 @@ for i in password:
             print(f"DEBUG: Space detected, no score given")
         else:
             print(f"DEBUG: !! ERROR !! Score was {processingScore} for '{i}'")
+        print("Total score output:", score)
+    processingScore = -1 # reset to -1 for error detection, next run should replace processingScore immediately if handled appropriately
 
 
 # <---------- Score Processing ---------->
 
-def checkScore(finalScore, finalReasoning): # Final score output & reasoning
-    if finalScore < 0:
-        print("Failed")
-    elif finalScore <= 5:
-        print("Poor")
-    elif finalScore <= 10:
-        print("Good")
-    else:
-        print("Great")
+# def checkScore(finalScore, finalReasoning): # Final score output & reasoning
+#    if finalScore < 0:
+#        print("Failed (below 0)")
+#    elif finalScore <= 5:
+#        print("Poor (below 5)")
+#    elif finalScore <= 10 and finalScore >15:
+#        print("Good (above 10)")
+#    else:
+#        print("Great")
 
 
-checkScore(score, reasons)
+# checkScore(score, reasons)
