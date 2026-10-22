@@ -8,7 +8,7 @@ import json
 debug = True # for detailed process outputs
 score = 0 # baseline score before input
 processingScore = 0 # temporary storage for processing weight for letter from weights.json
-reasons = str[]
+reasons = []
 
 w = json.load(open("weights.json")) # assignment of 'w' to management of weights
 if debug == True:
@@ -28,3 +28,6 @@ def checkScore(finalScore): # Final score output
         print("Good")
     else:
         print("Great")
+
+for i in range(len(password)):
+    print(i)
