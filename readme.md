@@ -9,7 +9,7 @@
 >
 > **Removals:**
 > - `-1` for all uppercase/lowercase, all numbers or all letters
-> - `-2` for consecutive numbers ('password**152543534**')
+> - `-2` for consecutive numbers ('152543534')
 > - `-3` for consecutive letters ('qirtnqnhfi')
 > - `-4` for sequenced numbers ('12345')
 > - `-6` for sequenced letters ('abcdef')
