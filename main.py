@@ -32,14 +32,15 @@ for i in password:
 
     if debug == True:
         if processingScore == 2:
-            print(f"DEBUG: Character '{i}' +2 score, detected character")
+            print(f"[DEBUG:] Character '{i}' +2 score, detected character")
         elif processingScore == 3:
-            print(f"DEBUG: Character '{i}' +4 score, detected symbol")
+            print(f"[DEBUG:] Character '{i}' +4 score, detected symbol")
         elif processingScore == 0:
-            print(f"DEBUG: Space detected, no score given")
+            print(f"[DEBUG:] Space detected, no score given")
         else:
-            print(f"DEBUG: !! ERROR !! Score was {processingScore} for '{i}'")
-        print("Total score output:", score)
+            print(f"[DEBUG:] !! ERROR !! Score was {processingScore} for '{i}'")
+        print("[DEBUG:] Total score output:", score)
+
     processingScore = -1 # reset to -1 for error detection, next run should replace processingScore immediately if handled appropriately
 
 
@@ -55,5 +56,6 @@ for i in password:
 #    else:
 #        print("Great")
 
+## UNFINISHED: Scores and their strength results are not final
 
 # checkScore(score, reasons)
