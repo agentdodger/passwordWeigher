@@ -32,19 +32,47 @@ for i in password:
 
     if debug == True:
         if processingScore == 2:
-            print(f"[DEBUG:] Character '{i}' +2 score, detected character")
+            print(f"[DEBUG]: Character '{i}' +2 score, detected character")
         elif processingScore == 3:
-            print(f"[DEBUG:] Character '{i}' +4 score, detected symbol")
+            print(f"[DEBUG]: Character '{i}' +4 score, detected symbol")
         elif processingScore == 0:
-            print(f"[DEBUG:] Space detected, no score given")
+            print(f"[DEBUG]: Space detected, no score given")
         else:
-            print(f"[DEBUG:] !! ERROR !! Score was {processingScore} for '{i}'")
-        print("[DEBUG:] Total score output:", score)
+            print(f"[DEBUG]: !! ERROR !! Score was {processingScore} for '{i}'")
+        print("[DEBUG]: Total score output:", score)
 
     processingScore = -1 # reset to -1 for error detection, next run should replace processingScore immediately if handled appropriately
 
+    # 2. All Upper/Lower detection, -1
 
-# <---------- Score Processing ---------->
+    upperScore = 0
+    lowerScore = 0
+
+    for i in password:
+        if i.isUpper():
+            upperScore +=1
+            if debug == True:
+                print(f"[DEBUG]: Character {i} detected as uppercase")
+        elif i.isLower():
+            lowerScore +=1
+            if debug == True:
+                print(f"[DEBUG]: Character {i} detected as lowercase")
+        else:
+            if debug == True:
+                print(f"[DEBUG]: !! ERROR !! {i} was not resolved as Upper or Lower")
+
+if upperScore - len(password) == 0:
+    score = score + w['allUpper']
+    if debug == True:
+        print(f"[DEBUG]: {w['allUpper']} score due to all uppercase detected")
+elif lowerScore - len(password) == 0:
+    score = score + w['allLower']
+    if debug == True:
+        print(f"[DEBUG]: {w['allLower']} score due to all lowercase detected")
+
+
+
+# <---------- Output Final Score & Reasons for Deduction (if any) ---------->
 
 # def checkScore(finalScore, finalReasoning): # Final score output & reasoning
 #    if finalScore < 0:
