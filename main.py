@@ -18,9 +18,13 @@ if debug == True:
 while len(password) <=4:
     password = str(input("Enter your password (4+ chars):"))
 
+def debugDivider():
+    if debug == True:
+        print("—"*20)
+
 # <---------- Score Processing ---------->
 
-# 1. +2 for each character in password, +4 for each character. Ignore spaces
+# 1. +2 for each character in password, +4 for each symbol. Ignores spaces
 for i in password:
     if i == " ":
         processingScore = 0
@@ -31,19 +35,20 @@ for i in password:
     score = score+processingScore
 
     if debug == True:
-        if processingScore == 2:
-            print(f"[DEBUG]: Character '{i}' +2 score, detected character")
-        elif processingScore == 3:
-            print(f"[DEBUG]: Character '{i}' +4 score, detected symbol")
+        if processingScore == w['characterBaseline']:
+            print(f"[DEBUG - Module 1]: Character '{i}' +{processingScore} score, detected character")
+        elif processingScore == w['symbolBaseline']:
+            print(f"[DEBUG - Module 1]: Character '{i}' +{processingScore} score, detected symbol")
         elif processingScore == 0:
-            print(f"[DEBUG]: Space detected, no score given")
+            print(f"[DEBUG - Module 1]: Space detected, no score given")
         else:
-            print(f"[DEBUG]: !! ERROR !! Score was {processingScore} for '{i}'")
-        print("[DEBUG]: Total score output:", score)
+            print(f"[DEBUG - Module 1]: !! ERROR !! Score was {processingScore} for '{i}'")
+        print("[DEBUG - Module 1]: Total score output:", score)
 
     processingScore = -1 # reset to -1 for error detection, next run should replace processingScore immediately if handled appropriately
 
-    # 2. All Upper/Lower detection, -1
+debugDivider()
+# 2. All Upper/Lower detection
 
 upperScore = 0
 lowerScore = 0
@@ -52,26 +57,76 @@ for i in password:
     if i.isupper():
         upperScore +=1
         if debug == True:
-            print(f"[DEBUG]: Character {i} detected as uppercase")
+            print(f"[DEBUG - Module 2]: Character {i} detected as uppercase")
     elif i.islower():
         lowerScore +=1
         if debug == True:
-            print(f"[DEBUG]: Character {i} detected as lowercase")
+            print(f"[DEBUG - Module 2]: Character {i} detected as lowercase")
     else:
         if debug == True:
-            print(f"[DEBUG]: !! ERROR !! {i} was not resolved as Upper or Lower")
+            if i.isnumeric():
+                print(f"[DEBUG - Module 2]: Skipped character {i} due to being a number")
+            elif i.isalnum() == False:
+                print(f"[DEBUG - Module 2]: Skipped character {i} due to being a symbol")
+            else:
+                print(f"[DEBUG - Module 2]: !! ERROR !! {i} was not resolved as Upper or Lower")
 
-if upperScore - len(password) == 0:
+if upperScore == len(password):
     score = score + w['allUpper']
     if debug == True:
-        print(f"[DEBUG]: {w['allUpper']} score due to all uppercase detected")
-        print(f"Total score output: {score}")
-elif lowerScore - len(password) == 0:
+        print(f"[DEBUG - Module 2]: {w['allUpper']} score due to all uppercase detected")
+elif lowerScore == len(password):
     score = score + w['allLower']
     if debug == True:
-        print(f"[DEBUG]: {w['allLower']} score due to all lowercase detected")
-        print(f"Total score output: {score}")
+        print(f"[DEBUG - Module 2]: {w['allLower']} score due to all lowercase detected")
 
+if debug == True:
+    print(f"[DEBUG - Module 2]: Total score output: {score}")
+
+if upperScore == len(password):
+    print("[DEBUG - Module 2]: Password determined to be all uppercase.")
+elif lowerScore == len(password):
+    print("[DEBUG - Module 2]: Password determined to be all lowercase.")
+else:
+    print("[DEBUG - Module 2]: Password is not all uppercase or all lowercase")
+
+print(f"Final score: {score}")
+
+debugDivider()
+# 3. All Numbers/Letters detection
+
+numScore = 0
+letterScore = 0
+
+for i in password:
+    if i.isnumeric():
+        numScore +=1
+        if debug == True:
+            print(f"[DEBUG - Module 3]: Character {i} detected as a number")
+    elif i.isalpha():
+        letterScore +=1
+        if debug == True:
+            print(f"[DEBUG - Module 3]: Character {i} detected as a letter")
+    elif debug == True:
+        print(f"[DEBUG - Module 3]: Skipped character {i} due to being a symbol")
+
+if numScore == len(password):
+    score = score + w['allNumbers']
+    if debug == True:
+        print(f"[DEBUG - Module 3]: {w['allNumbers']} score due to all numbers detected")
+elif letterScore == len(password):
+    score = score + w['allLetters']
+    if debug == True:
+        print(f"[DEBUG - Module 3]: {w['allLetters']} score due to all letters detected")
+else:
+    if debug == True:
+        print("[DEBUG - Module 3]: All Numbers/Letters not detected, skipped")
+
+if debug == True:
+    print(f"[DEBUG - Module 3]: Total score output: {score}")
+
+debugDivider()
+# 4. Consecutive Numbers/Letters detection
 
 
 # <---------- Output Final Score & Reasons for Deduction (if any) ---------->
