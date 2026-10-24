@@ -45,30 +45,32 @@ for i in password:
 
     # 2. All Upper/Lower detection, -1
 
-    upperScore = 0
-    lowerScore = 0
+upperScore = 0
+lowerScore = 0
 
-    for i in password:
-        if i.isUpper():
-            upperScore +=1
-            if debug == True:
-                print(f"[DEBUG]: Character {i} detected as uppercase")
-        elif i.isLower():
-            lowerScore +=1
-            if debug == True:
-                print(f"[DEBUG]: Character {i} detected as lowercase")
-        else:
-            if debug == True:
-                print(f"[DEBUG]: !! ERROR !! {i} was not resolved as Upper or Lower")
+for i in password:
+    if i.isupper():
+        upperScore +=1
+        if debug == True:
+            print(f"[DEBUG]: Character {i} detected as uppercase")
+    elif i.islower():
+        lowerScore +=1
+        if debug == True:
+            print(f"[DEBUG]: Character {i} detected as lowercase")
+    else:
+        if debug == True:
+            print(f"[DEBUG]: !! ERROR !! {i} was not resolved as Upper or Lower")
 
 if upperScore - len(password) == 0:
     score = score + w['allUpper']
     if debug == True:
         print(f"[DEBUG]: {w['allUpper']} score due to all uppercase detected")
+        print(f"Total score output: {score}")
 elif lowerScore - len(password) == 0:
     score = score + w['allLower']
     if debug == True:
         print(f"[DEBUG]: {w['allLower']} score due to all lowercase detected")
+        print(f"Total score output: {score}")
 
 
 
