@@ -23,4 +23,4 @@
 > - Bare Minimum: `undecided`
 > - Unsecure: `undecided`
 
-`main.py` for entire program processsing, `weights.json` for singular assigned points ('weights') to sum final score and decide strength output.
+`main.py` for entire program processsing, `weights.json` for singular assigned points ('weights') to sum final score and decide strength output, `common.json` with a database of 'common' passwords that should not be used (e.g. 'password', 'abc123').

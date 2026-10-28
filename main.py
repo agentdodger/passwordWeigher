@@ -153,6 +153,12 @@ for start in range(len(digits) - 2):
 if debug == True:
     print(f"[DEBUG - Module 4]: Total score output: {score}")
 
+debugDivider()
+# 5. Sequenced letters/numbers detection
+
+
+debugDivider()
+# 6. Common Passwords detection
 # <---------- Output Final Score & Reasons for Deduction (if any) ---------->
 
 # def checkScore(finalScore, finalReasoning): # Final score output & reasoning
