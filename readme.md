@@ -4,8 +4,8 @@
 > ## Points Handling:
 >
 > **Additions:**
-> - `2` Per Character
-> - `4` Per Symbol
+> - `1` Per Character
+> - `2` Per Symbol
 >
 > **Removals:**
 > - `-1` for all uppercase/lowercase, all numbers or all letters

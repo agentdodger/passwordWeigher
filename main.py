@@ -1,7 +1,7 @@
 import json
+from string import ascii_letters # module 4
+from string import digits # module 4
 
-# +2 score for each character in the password, the rest removes score
-# +4 for any symbol
 # Requirement of atleast 4 characters minimum for password 
 
 # <---------- Variables ---------->
@@ -24,14 +24,14 @@ def debugDivider():
 
 # <---------- Score Processing ---------->
 
-# 1. +2 for each character in password, +4 for each symbol. Ignores spaces
+# 1. Ignores spaces
 for i in password:
     if i == " ":
         processingScore = 0
     elif i.isalnum():
-        processingScore = w['characterBaseline'] # if number or character, +2 
+        processingScore = w['characterBaseline'] # if number or character
     else:
-        processingScore = w['symbolBaseline'] # if not number or character, must be a symbol: +4
+        processingScore = w['symbolBaseline'] # if not number or character, must be a symbol
     score = score+processingScore
 
     if debug == True:
@@ -128,6 +128,30 @@ if debug == True:
 debugDivider()
 # 4. Consecutive Numbers/Letters detection
 
+# Module 4 - part 1: letters ascending or descending in alphabetical order
+for letters in ("abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"):
+    for a, b in zip(letters, letters[1:]):
+        if a + b in password or b + a in password:
+            processingScore = w['consecutiveLetters']
+            score += processingScore
+            if debug == True:
+                print(f"[DEBUG - Module 4]: Found consecutive letters {a}, {b}")
+
+# Module 4 - part 2: numbers in ascending or descending sequences of 3 or more
+for start in range(len(digits) - 2):
+    ascendingSequence = digits[start:start + 3]
+    descendingSequence = digits[start + 2] + digits[start + 1] + digits[start]
+
+    if ascendingSequence in password or descendingSequence in password:
+        processingScore = w['consecutiveNumbers']
+        score += processingScore
+
+        if debug == True:
+            print(f"[DEBUG - Module 4]: Found consecutive numbers "
+                  f"{ascendingSequence} or {descendingSequence}")
+
+if debug == True:
+    print(f"[DEBUG - Module 4]: Total score output: {score}")
 
 # <---------- Output Final Score & Reasons for Deduction (if any) ---------->
 
